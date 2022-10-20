@@ -158,7 +158,7 @@ def start_clockin():
 
 info=''
 #尝试两次打卡
-for i in range(1):
+for i in range(2):
     info=info+'\n'+time.strftime('%Y年%m月%d日 %H时%M分%S秒(UTC+0)')+'\t'+start_clockin()
     time.sleep(60)
 
