@@ -19,6 +19,9 @@ parser.add_argument('--password', type=str, default=None)
 parser.add_argument('--province', type=str, default=None)
 parser.add_argument('--city', type=str, default=None)
 parser.add_argument('--county', type=str, default=None)
+parser.add_argument('--bot_token', type=str, default=None)
+parser.add_argument('--chat_id', type=str, default=None)
+parser.add_argument('--sc_key', type=str, default=None)
 args = parser.parse_args()
 
 def captchaOCR():
@@ -85,7 +88,24 @@ def setLocation():
     real_address = "湖南大学天马学生公寓" # 在此填写详细地址
     return real_address
 
-def main():
+def push(mode,text):
+    push_method={
+        0 : tg,
+        1 : server_chan
+    }
+    try:
+        push_method[mode](text)
+    except:
+        print('push failed')
+def tg(text):
+    tg_url='https://api.telegram.org/bot'+args.bot_token+'/sendMessage?chat_id='+args.chat_id+'&text='+text
+    #proxies={'http':'http://127.0.0.1:7890','https':'http://127.0.0.1:7890'}
+    push_tg = requests.post(tg_url)
+def server_chan(text):
+    server_chan_url='https://sctapi.ftqq.com/'+args.sc_key+'.send?title=打卡信息&desp='+text
+    push_server_chan = requests.post(server_chan_url)
+    
+def start_clockin():
     clockin_url = 'https://fangkong.hnu.edu.cn/api/v1/clockinlog/add'
     try:
         headers = login()
@@ -129,20 +149,42 @@ def main():
                     }
 
     clockin = requests.post(clockin_url, headers=headers, json=clockin_data)
+    
+    try:
+        info = json.loads(clockin.text)['msg']
+    except:
+        info = '打卡失败'
+    return info
 
-    if clockin.status_code == 200:
-        if '成功' in clockin.text or '已提交' in clockin.text:
-            isSucccess = 0
-        else:
-            isSucccess = 1
-            print(json.loads(clockin.text)['msg'])
-    else:
-        isSucccess = 1
-    print(json.loads(clockin.text)['msg'])
+info=''
+#尝试两次打卡
+for i in range(1):
+    info=info+'\n'+time.strftime('%Y年%m月%d日 %H时%M分%S秒(UTC+0)')+'\t'+start_clockin()
+    time.sleep(60)
 
-    return isSucccess
+mode=0
 
-main()
+if '成功' in info or '已提交' in info:
+    isSucccess = 0
+    #push(mode,info)
+else:
+    isSucccess = 1
+    push(mode,info)
+
+
+    # if clockin.status_code == 200:
+    #     if '成功' in clockin.text or '已提交' in clockin.text:
+    #         isSucccess = 0
+    #     else:
+    #         isSucccess = 1
+    #         print(json.loads(clockin.text)['msg'])
+    # else:
+    #     isSucccess = 1
+    # print(json.loads(clockin.text)['msg'])
+
+    # return isSucccess
+
+#main()
 
 # for i in range(10):
 #     try:    

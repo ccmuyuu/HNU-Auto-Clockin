@@ -46,3 +46,11 @@ HNU疫情防控和健康监测系统每日自动打卡
 
 **寒暑假离校返校状态切换：进入clockin.py中的main函数改这个IsInCampus的数值就行了**
 ![Snipaste_2022-01-15_21-32-04.png](https://s2.loli.net/2022/01/15/GHs2EvakgqNlBOn.png)
+
+## 推送相关
+
+填入相关参数：
+- telegram bot:点击Settings -> Secrets页面，再点击New repository Secret，在Name栏输入**BOT_TOKEN**，Value栏输入你的tg bot key(形如xxxxxx:xxxxxxxxxxxxxx)。然后再添加一个Secret，Name栏为**CHAT_ID**，Value栏填写接收消息的用户/频道/群组的chatid(可通过 https://t.me/get_id_bot 获取自己的id)。
+- server chan: 点击Settings -> Secrets页面，再点击New repository Secret，在Name栏输入**SC_KEY**，Value栏输入你server chan的sendkey（见<a href=https://sct.ftqq.com>server chan</a>的key&api栏）
+- <br>填写方法同<a href='https://github.com/SagaLinZP/HNU-Auto-Clockin#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8'>如何使用</a>
+<br>修改倒数几行的mode的数字(0为tg，1为server chan)

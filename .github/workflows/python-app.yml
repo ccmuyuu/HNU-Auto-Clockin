@@ -35,5 +35,8 @@ jobs:
           province:   ${{ secrets.PROVINCE }}
           city:       ${{ secrets.CITY }}
           county:     ${{ secrets.COUNTY }}
+          bot_token:  ${{ secrets.BOT_TOKEN }}
+          chat_id:    ${{ secrets.CHAT_ID }}
+          sc_key: ${{ secrets.SC_KEY }}
       run: |
-        python clock_in.py --username=$username --password=$password --province=$province --city=$city --county=$county
+        python clock_in.py --username=$username --password=$password --province=$province --city=$city --county=$county --bot_token=$bot_token --chat_id=$chat_id --sc_key=$sc_key
