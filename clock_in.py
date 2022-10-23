@@ -150,16 +150,16 @@ def start_clockin():
 
     clockin = requests.post(clockin_url, headers=headers, json=clockin_data)
     
-    try:
-        info = json.loads(clockin.text)['msg']
-    except:
-        info = '打卡失败'
+    info = json.loads(clockin.text)['msg']
     return info
 
 info=''
 #尝试两次打卡
 for i in range(2):
-    info=info+'\n'+time.strftime('%Y年%m月%d日 %H时%M分%S秒(UTC+0)')+'\t'+start_clockin()
+    try:
+        info=info+'\n'+time.strftime('%Y年%m月%d日 %H时%M分%S秒(UTC+0)')+'\t'+start_clockin()
+    except:
+        info=info+'\n'+time.strftime('%Y年%m月%d日 %H时%M分%S秒(UTC+0)')+'\t'+"打卡失败"
     time.sleep(60)
 
 mode=0
