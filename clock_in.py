@@ -85,7 +85,7 @@ def login():
     return headers
 
 def setLocation():
-    real_address = "湖南大学天马学生公寓" # 在此填写详细地址
+    real_address = "家"  #在此填写详细地址
     return real_address
 
 def push(mode,text):
@@ -125,7 +125,7 @@ def start_clockin():
                     "RealCity":args.city,
                     "RealCounty":args.county,
                     "RealAddress":real_address,
-                    "IsInCampus": "1",
+                    "IsInCampus": "0",
                     "ParkName": "null",
                     "BuildingName": "null",
                     "IsNormalTemperature": "1",
