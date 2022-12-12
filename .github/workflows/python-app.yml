@@ -6,9 +6,9 @@ name: Auto_Clockin_GitHub_Action
 on:
     workflow_dispatch:
     schedule:
-    - cron: '15 16 * * *'
+    - cron: '30 17 * * *'
       # 👆在上面那行修改打卡时间
-      # 0:15 everyday in UTC+8, 16:15 everyday in UTC+0
+      # 1:30 everyday in UTC+8, 17:30 everyday in UTC+0
 
 jobs:
   build:

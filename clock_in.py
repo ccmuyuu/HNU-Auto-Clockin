@@ -66,10 +66,8 @@ def login():
         'Accept-Encoding': 'gzip, deflate, br', 
         'Connection': 'keep-alive', 
         'Content-Length': '251', 
-        'sec-ch-ua': '"Chromium";v="106", "Microsoft Edge";v="106", "Not;A=Brand";v="99"', 
-        'sec-ch-ua-platform': 'Windows', 
         'Accept': 'application/json, text/plain, */*', 
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36 Edg/106.0.1370.42', 
+        'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.30(0x18001e32) NetType/4G Language/zh_CN', 
         'Referer': 'https://fangkong.hnu.edu.cn/app/', 
         'Content-Length': '251', 
         'Accept-Language': 'zh-CN,zh-Hans;q=0.9'
